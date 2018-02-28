@@ -1,4 +1,5 @@
 #!/bin/zsh
+# Android Screenshot Script
 
 adb_devices_result=`adb devices | sed -e '1,1d'`
 echo $adb_devices_result | while read line
