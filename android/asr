@@ -37,6 +37,6 @@ adb shell rm /sdcard/${FILE_NAME}.mp4
 echo "Converts to GIF? [y]"
 read convertGif
 case $convertGif in
-    "y" | "Y") ffmpeg -i ${YOUR_PATH}/${FILE_NAME}.mp4 -an -r 15 -pix_fmt rgb24 -f gif ${YOUR_PATH}/${FILE_NAME}.gif ;; # creating gif
+    "y" | "Y") ffmpeg -i ${YOUR_PATH}/${FILE_NAME}.mp4 -vf scale=320:-1 -r 15 ${YOUR_PATH}/${FILE_NAME}.gif ;;
     *) ;;
 esac
