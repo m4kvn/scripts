@@ -1,0 +1,51 @@
+#!/bin/sh
+rootDir=$(cd $(dirname $0) && cd .. && pwd)
+
+usage() {
+    echo "Usage: scripts (init/update)"
+}
+      
+init() {
+    if [ ! -n "$1" ]; then
+        echo "Usage: scripts init <profile-file-path>"
+        echo "ex) scripts init ~/.bash_profile"
+        exit 1
+    fi
+    echo "Your login shell profile path is "
+    echo "-> $1"
+    echo "ok) y no) n : "
+    while read ok; do
+        case "$ok" in
+            "y" | "Y") break ;;
+            "n" | "N") exit 0 ;;
+            *) echo "Incorrect value." ;;
+        esac
+    done
+    if [ ! -s "$1" ]; then
+        echo "'$1' is not exists"
+        exit 1
+    fi
+    cat << EOF >> $1
+# Auto setting by scripts
+if [ -s "${rootDir}/bin" ]; then
+    export PATH=${rootDir}/bin:\$PATH
+fi
+EOF
+}
+
+update() {
+    cd ${rootDir}/bin && \
+    ls -Ad ${rootDir}/folders | \
+    xargs -I{} find {} -type f | \
+    xargs -I{} ln -s {} 2>/dev/null
+}
+
+if [ ! -n "$1" ]; then
+    usage
+    exit 0
+fi
+
+case $1 in
+    init) init $2;;
+    update) update ;;
+esac
