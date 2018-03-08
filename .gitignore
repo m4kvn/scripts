@@ -1,1 +1,4 @@
-profile
+.DS_Store
+*.swp
+bin
+!bin/scripts
