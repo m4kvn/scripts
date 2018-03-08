@@ -1,13 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
-dir=$(cd $(dirname $0) && pwd)
-cat << EOF > profile
-export PATH=${dir}/android:\$PATH
-EOF
+dir="$HOME/.scripts"
 
-cat << EOF >> ~/.bash_profile
-# Auto setting by github.com/m4kvn/scripts
-if [ -s $dir ]; then
-    source ${dir}/profile
-fi
-EOF
+git clone https://github.com/m4kvn/scripts.git $dir
+
+cd $dir/bin && \
+ls -Ad $dir/folders | \
+xargs -I{} find {} -type f | \
+xargs -I{} ln -s {} 2>/dev/null
