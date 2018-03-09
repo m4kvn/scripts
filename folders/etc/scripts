@@ -1,3 +1,16 @@
 #!/bin/sh
 
-scripts-update
+usage() {
+cat << EOF
+usage: scripts <command>
+
+These are common Scripts commands used in various situations:
+  - update: Update all scripts
+
+EOF
+}
+
+case $1 in 
+    update) scripts-update ;; 
+    *) usage ;;
+esac 
