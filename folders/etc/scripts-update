@@ -1,0 +1,9 @@
+#!/bin/sh
+
+dir="$HOME/.scripts"
+branch=$(git rev-parse --abbrev-ref HEAD)
+git fetch && git pull origin $branch
+cd $dir/bin && \
+ls -Ad $dir/folders | \
+xargs -I{} find {} -type f | \
+xargs -I{} ln -s {} 2>/dev/null
