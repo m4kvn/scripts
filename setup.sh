@@ -8,3 +8,5 @@ cd $dir/bin && \
 ls -Ad $dir/folders | \
 xargs -I{} find {} -type f | \
 xargs -I{} ln -s {} 2>/dev/null
+
+exit 0
