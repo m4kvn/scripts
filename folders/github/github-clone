@@ -8,7 +8,7 @@ usage: github clone <url>
 EOF
 }
 
-[ ! -n "$1" ] && usage
+[ ! -n "$1" ] && usage && exit 1
 
 url=$1
 
