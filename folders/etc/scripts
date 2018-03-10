@@ -16,6 +16,6 @@ EOF
 case $1 in 
     update) scripts-update ;; 
     clear) echo "clear command is not implemented." ;;
-    list) ls -1 ;;
+    list) ls -1 $(dirname $0);;
     *) usage ;;
 esac 
