@@ -1,11 +1,10 @@
 #!/bin/sh
 
 dir="$HOME/.scripts"
-branch=$(git rev-parse --abbrev-ref HEAD)
 
 cd $dir
 git fetch
-git pull origin $branch
+git pull origin $(git rev-parse --abbrev-ref HEAD)
 
 cd $dir/bin
 ls -Ad $dir/folders | \
