@@ -16,6 +16,10 @@ if expr "$1" : "https://github.com/" > /dev/null; then
     dir=$(echo ${url#https://github.com/})
 elif expr "$1" : "git@github.com:" > /dev/null; then
     dir=$(echo ${url#git@github.com:})
+elif expr "$1" : "https://gitlab.com/" > /dev/null; then
+    dir=$(echo ${url#https://gitlab.com/})
+elif expr "$1" : "git@gitlab.com:" > /dev/null; then
+    dir=$(echo ${url#git@gitlab.com:})
 else
     echo "URL is invalid"
     exit 1
